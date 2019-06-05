@@ -1,0 +1,74 @@
+<!-- 搜索框 -->
+<template name="search">
+    <view class="ui-row ui-search">
+        <view class="ui-col valign-middle input">
+            <view class="ui-col-content valign-middle" style="flex:0 0 20px;">
+                <icon type="search" size="16"></icon>
+            </view>
+            <view class="ui-col-content valign-middle">
+                <input type="text" class='radius'></input>
+            </view>
+        </view>
+        <view class="ui-col align-right valign-middle" style="flex:0 0 40px;">
+            搜索
+        </view>
+    </view>
+</template>
+
+<!-- 图标导航 -->
+<!-- <template name="iconNav">
+    <view class="ui-row icon-nav">
+        <view class="ui-col-3">
+            <view class="ui-col-content valign-middle align-center">
+                <image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods/15538387246084.png"></image>
+                <text>服饰</text>
+            </view>
+        </view>
+        <view class="ui-col-3">
+            <view class="ui-col-content valign-middle align-center">
+                <image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods/15538387246084.png"></image>
+                <text>服饰</text>
+            </view>
+        </view>
+        <view class="ui-col-3">
+            <view class="ui-col-content valign-middle align-center">
+                <image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods/15538387246084.png"></image>
+                <text>服饰</text>
+            </view>
+        </view>
+        <view class="ui-col-3">
+            <view class="ui-col-content valign-middle align-center">
+                <image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods/15538387246084.png"></image>
+                <text>服饰</text>
+            </view>
+        </view>
+        <view class="ui-col-3">
+            <view class="ui-col-content valign-middle align-center">
+                <image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods/15538387246084.png"></image>
+                <text>服饰</text>
+            </view>
+        </view>
+    </view>
+    <view class="ui-clear"></view>
+</template> -->
+
+<!-- <template name="iconNav1">
+    <view class="ui-row">
+    
+    </view>
+</template> -->
+
+
+
+
+
+<template name="scroll-goods-view">
+    <scroll-view  scroll-x style="width: 100%;height:200rpx;">
+        <view class="ui-row">
+            <view class="ui-col goods-module-list" wx:for="{{goodsList}}" wx:key="{{index}}" style="flex:50%">
+        
+            {{index}}
+            </view>
+        </view>
+</scroll-view>
+</template>

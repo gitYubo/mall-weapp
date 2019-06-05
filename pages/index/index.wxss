@@ -1,0 +1,12 @@
+.tab-bar {
+    height: 50px;
+    font-size: 10px;
+    background: #FFFFFF;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab-bar cover-image {
+    width: 27px;
+    height: 27px;
+}
+

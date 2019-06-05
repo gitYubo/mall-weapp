@@ -1,0 +1,18 @@
+
+
+<home></home>
+
+
+
+<view style="height:100px"></view>
+<ui-fixed-view bottom="0" right="0" left="0">
+    <cover-view class="tab-bar ui-row ui-row-border-top">
+        <cover-view class="ui-col" wx:for="{{5}}" wx:key="{{index}}" bindtap="NavChange" data-cur="basics">
+            <cover-view class="ui-col-content valign-middle align-center">
+                <cover-image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods_cate/15549648999223.png">
+                </cover-image>
+                <cover-view style="">1</cover-view>
+            </cover-view>
+        </cover-view>
+    </cover-view>
+</ui-fixed-view>

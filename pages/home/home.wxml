@@ -1,0 +1,36 @@
+<nav-bar custom-style="{{ {borderBottom:'1px solid rgba(231, 231, 231, 0.6)',backgroundColor:'#fff'} }}" title="xxx">
+</nav-bar>
+
+<ui-search-box customStyle="" inputStyle="border-radius:40px;"></ui-search-box>
+
+<ui-swiper customStyle="height:375px" swiperType="" isDot="{{false}}" is="{{}}"></ui-swiper>
+
+<ui-roller autoplay="2000" height="50">
+    <ui-roller-item>
+        <view class="ui-row " style="height:100%;">
+            <view class="ui-col valign-middle">公告1</view>
+        </view>
+    </ui-roller-item>
+    <ui-roller-item>
+        <view class="ui-row " style="height:100%;">
+            <view class="ui-col valign-middle">公告2</view>
+        </view>
+    </ui-roller-item>
+    <ui-roller-item>
+        <view class="ui-row " style="height:100%;">
+            <view class="ui-col valign-middle">公告3</view>
+        </view>
+    </ui-roller-item>
+    <ui-roller-item>
+        <view class="ui-row " style="height:100%;">
+            <view class="ui-col valign-middle">公告4</view>
+        </view>
+    </ui-roller-item>
+    <ui-roller-item>
+        <view class="ui-row " style="height:100%;">
+            <view class="ui-col valign-middle">公告4</view>
+        </view>
+    </ui-roller-item>
+</ui-roller>
+
+<ui-goods-list type="1"></ui-goods-list>

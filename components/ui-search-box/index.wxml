@@ -1,0 +1,12 @@
+<view class="ui-search"  style="{{ selfCustomStyle }}">
+    <icon type="search"
+        size="18"
+        class='icon-search'></icon>
+    <input type="text"
+        placeholder="{{placeholder}}"
+        confirm-type="search"
+        value=""
+        disabled="{{disabled}}"
+        style="{{ selfInputCustomStyle }}"
+        bindfocus="handlefocus"></input>
+</view>

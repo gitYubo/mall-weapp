@@ -1,0 +1,10 @@
+ui-roller {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+}
+.ui-roller {
+  position: relative;
+  width: 100%;
+  white-space: nowrap;
+}

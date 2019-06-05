@@ -1,0 +1,17 @@
+.icon-nav{
+    color: #000000;
+}
+.icon-nav image{
+}
+
+.nav-item{
+    background-color:#eee;
+}
+
+.column-content {
+    height:40px;
+    line-height:40px;
+    width:100%;
+    background-color:#eee;
+    border-radius:5px;
+}

@@ -1,0 +1,31 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/home/home",
+        "pages/goodsDetail/goodsDetail",
+        "pages/login/login"
+    ],
+    "window": {
+        "navigationStyle": "custom",
+        "backgroundTextStyle": "dark",
+        "backgroundColor": "#efefef",
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTitleText": "商城",
+        "navigationBarTextStyle": "black"
+    },
+    "networkTimeout": {
+        "request": 10000
+    },
+    "usingComponents": {
+        "nav-bar": "/components/nav-bar/index",
+        "ui-tabs": "/components/ui-tabs/index",
+        "ui-tab": "/components/ui-tab/index",
+        "ui-icon-nav": "/components/ui-icon-nav/index",
+        "ui-swiper": "/components/ui-swiper/index",
+        "ui-fixed-view": "/components/ui-fixed-view/index",
+        "ui-search-box": "/components/ui-search-box/index",
+        "ui-roller": "/components/ui-roller/index",
+        "ui-roller-item": "/components/ui-roller-item/index",
+        "ui-goods-list": "/components/ui-goods-list/index"
+    }
+}

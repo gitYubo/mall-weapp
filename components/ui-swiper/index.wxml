@@ -1,0 +1,43 @@
+
+
+<!-- -->
+<!--  -->
+<view class="swiper-container {{dot}}-dot" style="{{selfCustomStyle}}">
+    <swiper class="swiper {{swiperType}}-swiper"
+        circular="true" 
+        autoplay="true"
+        interval="5000" 
+        duration="500" 
+        style="{{selfCustomStyle}}"
+        bindchange="swiperChange">
+        <swiper-item wx:for="{{swiperList}}" wx:key  class="{{swiperCurrent==index?'cur':''}}">
+            <view class="swiper-item">
+                <image src="{{item.url}}"
+                    mode="aspectFill"
+                    wx:if="{{item.type=='image'}}">
+                </image>
+                <video src="{{item.url}}"
+                    autoplay
+                    loop
+                    muted
+                    show-play-btn="{{false}}"
+                    controls="{{false}}"
+                    wx:if="{{item.type=='video'}}">
+                </video>
+            </view>
+        </swiper-item>
+    </swiper>
+    <view class="slot-content">
+        <view class="ui-row" wx:if="{{false}}">
+            <view class="btn" wx:if="{{swiperList[swiperCurrent].type == 'video'}}">视频</view>
+            <view class="btn" wx:if="{{swiperList[swiperCurrent].type == 'image'}}">图片</view>
+            <view class="btn">{{swiperCurrent + 1}} / {{swiperList.length}}</view>
+        </view>
+        <view class="dots" wx:if="{{isDot}}">
+            <block wx:for="{{swiperList}}" wx:key="{{index}}">
+            <view class="dot {{index == swiperCurrent ? 'active' : ''}}"></view>
+            </block>
+        </view>
+        <slot></slot>
+    </view>
+</view>

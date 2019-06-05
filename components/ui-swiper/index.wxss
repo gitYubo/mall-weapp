@@ -1,0 +1,115 @@
+
+.swiper-container{
+    position: relative;
+}
+.slot-content{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.swiper image,
+.swiper video,
+.swiper .swiper-item,
+.swiper-item image {
+	width: 100%;
+	display: block;
+	height: 100%;
+	margin: 0;
+	pointer-events: none;
+}
+
+.swiper-item video{
+    width: 100%;
+	display: block;
+	margin: 0;
+}
+.slot-content{
+    pointer-events: none;
+}
+.slot-content .ui-row{
+    margin-bottom: 24rpx;
+}
+.slot-content .btn{
+    display: inline-block;
+    margin-right: 24rpx;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 24rpx;
+    padding: 4rpx 15rpx;
+    color: #FFFFFF;
+}
+
+.swiper-container .dots {
+    clear: both;
+    margin-bottom: 20rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+.swiper-container.square-dot .dots .dot{
+    margin: 0 8rpx;
+    width: 14rpx;
+    height: 14rpx;
+    background: #8799a3;
+    border-radius: 8rpx;
+    transition: width .2s
+}
+.swiper-container.square-dot .dots .dot.active{
+    width: 24rpx;
+    background: #FFFFFF;
+}
+
+.swiper-container.round-dot  .dots .dot{
+    margin: 0 8rpx;
+    width: 14rpx;
+    height: 14rpx;
+    background: #8799a3;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: border .2s
+}
+.swiper-container.round-dot  .dots .dot.active{
+    box-sizing: content-box;
+    border-color: #FFFFFF;
+}
+
+.card-swiper swiper-item{
+	box-sizing: border-box;
+	overflow: initial;
+}
+
+.card-swiper swiper-item .swiper-item {
+	width: 100%;
+	display: block;
+	height: 100%;
+	border-radius: 10rpx;
+	transform: scale(0.9);
+	transition: all 0.2s ease-in 0s;
+	overflow: hidden;
+}
+
+
+.card-ease-in-swiper swiper-item {
+	width: 610rpx !important;
+	left: 70rpx;
+	box-sizing: border-box;
+	padding: 40rpx 0rpx 70rpx;
+	overflow: initial;
+}
+
+.card-ease-in-swiper swiper-item .swiper-item {
+	width: 100%;
+	display: block;
+	height: 100%;
+	border-radius: 10rpx;
+	transform: scale(0.9);
+	transition: all 0.2s ease-in 0s;
+	overflow: hidden;
+}
+
+.card-ease-in-swiper swiper-item.cur .swiper-item {
+	transform: none;
+	transition: all 0.2s ease-in 0s;
+}

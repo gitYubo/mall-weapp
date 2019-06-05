@@ -1,0 +1,89 @@
+<nav-bar custom-style="{{ {borderBottom:'1px solid rgba(231, 231, 231, 0.6)',backgroundColor:'#fff'} }}"
+    title="商品详情">
+</nav-bar>
+
+<view class="swiper-container">
+    <swiper class="swiper"
+        circular
+        autoplay
+        interval="5000"
+        duration="500" 
+        class="swiper">
+        <block wx:for="{{items}}" wx:key="unique">
+            <swiper-item>
+                <image src="{{item.src}}" class="img" />
+            </swiper-item>
+        </block>
+    </swiper>
+
+    <view class="dots">
+        <block wx:for="{{items}}" wx:key="unique">
+            <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+    </view>
+</view>
+
+
+<ui-sticky scroll-top="{{ scrollTop }}"
+    top="{{NAV_HEIGHT}}"
+    custom-style="{{ {backgroundColor:'#FFF'} }}">
+    <ui-tabs index="{{ current }}"
+        tab-style="{{ {width:width/2+'px !important'} }}"
+        active-tab-style="{{ {width:width/2+'px !important'} }}"
+        bindchange="handleChange">
+        <ui-tab>商品详情</ui-tab>
+        <ui-tab>商品评价</ui-tab>
+    </ui-tabs>
+    <ui-tabs slot="sticky"
+        index="{{ current }}"
+        tab-style="{{ {width:width/2+'px !important'} }}"
+        active-tab-style="{{ {width:width/2+'px !important'} }}"
+        bindchange="handleChange">
+        <ui-tab>商品详情</ui-tab>
+        <ui-tab>商品评价</ui-tab>
+    </ui-tabs>
+</ui-sticky>
+<swiper class="content"
+    style="height:{{swiper_height + 80}}px;min-height:50%vh;"
+    current="{{ current }}"
+    bindchange="handleContentChange1">
+    <swiper-item>
+        <view class="column-list{{current}}">
+            <view wx:for="{{detail}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+    </swiper-item>
+    <swiper-item>
+        <view class="column-list{{current}}">
+            <view>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容 2</view>
+        </view>
+    </swiper-item>
+</swiper>
+
+
+<ui-fixed-view bottom="0" left="0" right="0">
+    <view class="ui-row" style="height:50px;background: #ffffff">
+        <view class="ui-col-2 font-24">
+            <view class="ui-col-content ui-col-align-center align-center valign-middle">
+                <span type="ring" size="16" class="ui-icon icon-ring" style="font-size: 16px;"></span>
+                <text>首页</text>
+            </view>
+        </view>
+        <view class="ui-col-2 font-24" >
+            <view class="ui-col-content ui-col-align-center align-center valign-middle">
+                <span type="ring" size="16" class="ui-icon icon-ring" style="font-size: 16px;"></span>
+                <text>收藏</text>
+            </view>
+        </view>
+        <view class="ui-col-4 font-30 bg-yellow">
+            <view class="ui-col-content ui-col-align-center align-center valign-middle">
+                加入购物车
+            </view>
+        </view>
+        <view class="ui-col-4 font-30 bg-red">
+            <view class="ui-col-content ui-col-align-center align-center valign-middle">
+                立即购买
+            </view>
+        </view>
+    </view>
+
+</ui-fixed-view>

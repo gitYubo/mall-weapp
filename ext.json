@@ -1,0 +1,15 @@
+{
+    "extEnable": true,
+    "extAppid": "wx8479f94d4f47e467",
+    "ext": {
+        "ald_config": {
+            "app_key": "247e3a1d75d9c9e18c1628a2f29d5fd7",
+            "getLocation": 0,
+            "getUserinfo": 0,
+            "plugin": false
+        },
+        "memberId": 7,
+        "weAppId": 189,
+        "apiUrl": "https://fcdev.guodong.com"
+    }
+}
