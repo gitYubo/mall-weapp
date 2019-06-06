@@ -1,4 +1,26 @@
-<import src="./template/template.wxml"/>
 
-<template is="scrollView" ></template>
-<template is="listView" ></template>
+<scroll-view scroll-x="{{scrollX}}" scroll-y="{{scrollY}}">
+    <view class="ui-goods-list {{!scrollX ? 'ui-goods-list-wrap' : ''}}">
+    <block wx:for="{{goodsList}}" wx:key="{{index}}">
+        <view class="ui-goods-content ui-goods-content-{{itemColumn}}" 
+            style="{{selfContentStyle}}margin-right: {{ scrollX ? 10 : 0 }}px" >
+            <view class="item-top" style="{{selfTopStyle}}">
+                {{index}}/ {{index%columnNum}}
+            </view>
+            <view class="item-bottom" style="{{selfBottomStyle}}">
+                <view class="item-bottom-head">
+                    <view class="title-xx">
+                        大{{goodsList.length%columnNum}}
+                    </view>
+                </view>
+                <view class="item-bottom-footer">
+                    <text class="text-24">￥</text>
+                    <text class="text-36">20</text>
+                    <text class="text-24">.00</text>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view style="{{emptyViewStyle}}" wx:if="{{!scrollX}}" ></view>
+    </view>
+</scroll-view>

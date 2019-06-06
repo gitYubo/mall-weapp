@@ -26,7 +26,17 @@ class System extends BaseComponent {
         wx.showConfirm = function (options) {
             wx.showModal(options);
         };
+
+        wx.queryView = this.queryView
+    }
+    //获取节点信息
+    queryView(context, name, success){
+        const query = wx.createSelectorQuery().in(context)
+        query.select(name).boundingClientRect(function (res) {
+            success(res);
+        }).exec()
     }
 }
 
 export default new System()
+

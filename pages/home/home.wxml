@@ -4,33 +4,41 @@
 <ui-search-box customStyle="" inputStyle="border-radius:40px;"></ui-search-box>
 
 <ui-swiper customStyle="height:375px" swiperType="" isDot="{{false}}" is="{{}}"></ui-swiper>
+<view style='padding:0 24rpx'>
 
-<ui-roller autoplay="2000" height="50">
-    <ui-roller-item>
-        <view class="ui-row " style="height:100%;">
-            <view class="ui-col valign-middle">公告1</view>
-        </view>
-    </ui-roller-item>
-    <ui-roller-item>
-        <view class="ui-row " style="height:100%;">
-            <view class="ui-col valign-middle">公告2</view>
-        </view>
-    </ui-roller-item>
-    <ui-roller-item>
-        <view class="ui-row " style="height:100%;">
-            <view class="ui-col valign-middle">公告3</view>
-        </view>
-    </ui-roller-item>
-    <ui-roller-item>
-        <view class="ui-row " style="height:100%;">
-            <view class="ui-col valign-middle">公告4</view>
-        </view>
-    </ui-roller-item>
-    <ui-roller-item>
-        <view class="ui-row " style="height:100%;">
-            <view class="ui-col valign-middle">公告4</view>
-        </view>
-    </ui-roller-item>
-</ui-roller>
+    <!-- <ui-roller autoplay="2000" height="50">
+        <ui-roller-item>
+            <view class="ui-row " style="height:100%;">
+                <view class="ui-col valign-middle">公告1</view>
+            </view>
+        </ui-roller-item>
+        <ui-roller-item>
+            <view class="ui-row " style="height:100%;">
+                <view class="ui-col valign-middle">公告2</view>
+            </view>
+        </ui-roller-item>
+        <ui-roller-item>
+            <view class="ui-row " style="height:100%;">
+                <view class="ui-col valign-middle">公告3</view>
+            </view>
+        </ui-roller-item>
+        <ui-roller-item>
+            <view class="ui-row " style="height:100%;">
+                <view class="ui-col valign-middle">公告4</view>
+            </view>
+        </ui-roller-item>
+        <ui-roller-item>
+            <view class="ui-row " style="height:100%;">
+                <view class="ui-col valign-middle">公告4</view>
+            </view>
+        </ui-roller-item>
+    </ui-roller> -->
 
-<ui-goods-list type="1"></ui-goods-list>
+    <ui-goods-list scrollX="{{false}}"
+        column-num="{{2}}"
+        item-column="column"
+        top-style="height: 170px;width:170px" 
+        bottom-style="height: 65px;">
+    </ui-goods-list>
+
+</view>

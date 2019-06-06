@@ -1,5 +1,3 @@
-
-
 import BaseComponent from '../prototype/baseComponent';
 import common from '../common/common';
 
@@ -13,26 +11,40 @@ class Request extends BaseComponent {
         this.alignment = []
         this.header = {
             "Content-Type": "application/json",
-            "token": "",
+            "token": common.getStorage('token'),
             "version": ""
         }
     }
     // post请求
     sendPost(url, data = {}, callback) {
         // 验证token
-        console.log(data.q)
-        let userToken = common.getStorage('token')
-        if (ckeckUrl.includes(url) == false) {
+        let _this = this
+        let userToken = _this.header.token
+        if (!ckeckUrl.includes(url)) {
             if (!userToken) {
-               
-               
-                return false
+                this.alignment.push({
+                    url,
+                    data,
+                    callback
+                })
+                common.jumpToLogin(function(res) {
+                    _this.header.token = res.data.token
+                    common.setStorage('token', res.data.token)
+                    for (var i = 0; i < _this.alignment.length; i++) {
+                        (function(i) {
+                            _this.sendRequest('POST', _this.alignment[i].url, _this.alignment[i].data, _this.header, function(res) {
+                                _this.alignment[i].callback(res)
+                                _this.alignment.splice(i, 1, {})
+                            })
+                        })(i)
+                    }
+                })
+                return
+            } else {
+                _this.alignment = []
             }
         }
-       
-
-        
-
+        this.sendRequest('POST', url, data, _this.header, callback)
     }
     // get请求
     sendGet(url, data, callback) {
@@ -50,11 +62,11 @@ class Request extends BaseComponent {
                 "token": config.token,
                 "version": config.version
             },
-            success: function (res) {
+            success: function(res) {
                 let data = res.data
                 _this.statusCode(data, callback)
             },
-            fail: function (err) {
+            fail: function(err) {
                 console.log(err);
             }
         })
@@ -64,16 +76,13 @@ class Request extends BaseComponent {
     statusCode(data, callback) {
         switch (data.code) {
             case -1:
-                common.jumpToLogin()
                 console.log(data.message)
-                return false
                 break;
             case 0:
-                callback(data)
+                callback(data.data)
                 break;
         }
     }
 }
-
 
 export default new Request();

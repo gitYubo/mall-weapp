@@ -140,6 +140,10 @@ button[type="success"][plain] {
   flex: 1;
   display: flex;
   justify-content: center;
+  overflow: hidden;
+}
+.ui-row.align-left {
+  justify-content: flex-start;
 }
 .ui-row-border-top:before {
   content: " ";
@@ -178,6 +182,9 @@ button[type="success"][plain] {
   display: flex;
   flex: 1;
   height: 100%;
+}
+.ui-col.ui-flex-wrap{
+    flex-wrap: wrap;
 }
 .ui-col.valign-top {
   align-items: flex-start;

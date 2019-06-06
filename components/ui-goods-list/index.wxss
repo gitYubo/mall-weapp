@@ -1,1 +1,40 @@
-@import "./template/template.wxss";
+.ui-goods-list {
+    width: 100%;
+    display: flex;
+}
+
+.ui-goods-list-wrap {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.ui-goods-content.ui-goods-content-row {
+    display: flex;
+}
+
+.ui-goods-content.ui-goods-content-row .item-bottom {
+    margin-left: 33rpx;
+}
+
+.ui-goods-content.ui-goods-content-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-bottom-head {
+    flex: 1;
+}
+
+.ui-goods-list .item-top {
+    height: 226rpx;
+    background: #8e8e8e;
+}
+
+.ui-goods-list .item-bottom {
+    height: 130rpx;
+}

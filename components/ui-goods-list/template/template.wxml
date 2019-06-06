@@ -1,31 +1,29 @@
-
 <template name="scrollView">
     <scroll-view scroll-x="{{true}}" class="ui-googs-scroll-view">
-            <view class="ui-googs-scroll-view-item" wx:for="{{20}}">
-                <view class="ui-googs-top">
-                
-                </view>
-                <view class="ui-googs-bottom">
-                    <view class="ui-col-content">
-                        <view class="ui-col valign-middle title-xx">
-                            郭德纲的郭德纲大
-                        </view>
-                        <view class="ui-col valign-middle">
-                            <text class="text-24">￥</text>
-                            <text class="text-36">￥</text>
-                            <text class="text-24">￥</text>
-                        </view>
+        <view class="ui-googs-scroll-view-item" wx:for="{{20}}">
+            <view class="ui-googs-top">
+
+            </view>
+            <view class="ui-googs-bottom">
+                <view class="ui-col-content">
+                    <view class="ui-col valign-middle title-xx">
+                        郭德纲的郭德纲大
+                    </view>
+                    <view class="ui-col valign-middle">
+                        <text class="text-24">￥</text>
+                        <text class="text-36">￥</text>
+                        <text class="text-24">￥</text>
                     </view>
                 </view>
             </view>
+        </view>
     </scroll-view>
 </template>
 
 
 <template name="listView">
-    <scroll-view scroll-x="{{true}}" style="height: 475rpx;">
-        <view class="ui-col-6" wx:for="{{6}}">
-            <view class="ui-googs-list-item {{index%2 != 0 && 'ui-googs-list-item-right'}}">
+    <!-- <view class="ui-col-6" wx:for="{{6}}" style="height: 475rpx;">
+            <view class="ui-googs-list-item">
                 <view class="item-top">
                 
                 </view>
@@ -42,7 +40,34 @@
                     </view>
                 </view>
             </view>
-        </view>
-    </scroll-view>
+        </view> -->
 </template>
 
+
+<template name="listView1">
+    <!-- <view class="ui-goods-list-3">
+        <view class="ui-col-4" wx:for="{{6}}">
+            <view class="ui-col-content">
+                <view class="item-top">
+
+                </view>
+                <view class="item-bottom">
+                    <view class="ui-col-content">
+                        <view class="ui-col valign-middle title-xx">
+                            郭德纲的郭德纲大
+                        </view>
+                        <view class="ui-col valign-middle">
+                            <text class="text-24">￥</text>
+                            <text class="text-36">￥</text>
+                            <text class="text-24">￥</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+    {{col}}...{{colr}}
+
+
+
+</template>
