@@ -1,6 +1,7 @@
 Page({
     data: {
-        PageCur: 'basics'
+        PageCur: 'basics',
+        menuList:[]
     },
     NavChange(e) {
         this.setData({
@@ -8,31 +9,69 @@ Page({
         })
     },
     onShow: function() {
-        wx.$api.goodCates({
-            q: 1
-        }, (res) => {
-            console.log(res, 1)
-        })
 
-        wx.$api.goodCates({
-            q: 1
-        }, (res) => {
-            console.log(res, 1)
-        })
-        
-        wx.$api.goodCates({
-            q: 1
-        }, (res) => {
-            console.log(res, 1)
-        })
-
- 
-        setTimeout(() => {
-            wx.$api.goodCates({
-                q: 3
-            }, (res) => {
-                console.log(res, 4)
-            })
-        }, 5000)
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        wx.$api.homeConfig({
+            baseId: wx.$ext.weAppId
+        }).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
+        // setTimeout(() => {
+        //     wx.$api.goodCates({
+        //         q: 3
+        //     }, (res) => {
+        //         console.log(res, 4)
+        //     })
+        // }, 5000)
     },
 })

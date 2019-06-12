@@ -2,9 +2,14 @@
 
 export default class BaseComponent {
     constructor() {
-        this.fq = new Array()
+        this.ckeckUrlList = ['weapp/gettoken'];
     }
-    eventLoop() {
-
+    // 检测不需要验证token的url
+    ckeckUrl(type) {
+        if (this.ckeckUrlList.includes(type)){
+            console.log('不需要验证token');
+            return false
+        }
+        return true
     }
 }

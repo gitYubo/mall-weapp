@@ -1,7 +1,8 @@
 "use strict";
-import MD5Util from '../../static/utils/MD5Encode'
-const app = getApp();
 
+import MD5Util from '../../static/utils/MD5Encode';
+
+const app = getApp();
 
 // 跳转到登陆
 function jumpToLogin(callback) {

@@ -7,11 +7,10 @@
 <view style="height:100px"></view>
 
     <cover-view class="tab-bar ui-row ui-row-border-top">
-        <cover-view class="ui-col" wx:for="{{5}}" wx:key="{{index}}" bindtap="NavChange" data-cur="basics">
+        <cover-view class="ui-col" wx:for="{{menuList}}" wx:key="{{index}}" bindtap="NavChange" data-cur="basics">
             <cover-view class="ui-col-content valign-middle align-center">
-                <cover-image src="https://wxmicdn-1251543237.cos.ap-chengdu.myqcloud.com/test/m_68/weapp_189/shop/goods_cate/15549648999223.png">
-                </cover-image>
-                <cover-view style="">1</cover-view>
+                <cover-view class="iconfont  icon{{item.icon}}"></cover-view>
+                <cover-view style="">{{item.title}}</cover-view>
             </cover-view>
         </cover-view>
     </cover-view>

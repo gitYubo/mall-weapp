@@ -1,86 +1,130 @@
 import BaseComponent from '../prototype/baseComponent';
-import common from '../common/common';
-
-// 不需要tokeng的接口
-const ckeckUrl = ['weapp/gettoken']
+import MD5Util from '../../static/utils/MD5Encode';
 
 class Request extends BaseComponent {
     constructor() {
         super()
-        this.baseUrl = "https://fcdev.guodong.com/app/";
-        this.alignment = []
+        this.apiUrl = wx.$ext.apiUrl + '/app/';
+        this.token =  wx.getStorageSync('token');
+        this.loginQueue = []
+        this.isLoginning = false;
         this.header = {
             "Content-Type": "application/json",
-            "token": common.getStorage('token'),
+            "token": this.token,
             "version": ""
         }
     }
-    // post请求
-    sendPost(url, data = {}, callback) {
-        // 验证token
-        let _this = this
-        let userToken = _this.header.token
-        if (!ckeckUrl.includes(url)) {
-            if (!userToken) {
-                this.alignment.push({
-                    url,
-                    data,
-                    callback
-                })
-                common.jumpToLogin(function(res) {
-                    _this.header.token = res.data.token
-                    common.setStorage('token', res.data.token)
-                    for (var i = 0; i < _this.alignment.length; i++) {
-                        (function(i) {
-                            _this.sendRequest('POST', _this.alignment[i].url, _this.alignment[i].data, _this.header, function(res) {
-                                _this.alignment[i].callback(res)
-                                _this.alignment.splice(i, 1, {})
-                            })
-                        })(i)
-                    }
-                })
-                return
-            } else {
-                _this.alignment = []
+
+    requestP(url, param, method) {
+        if (this.ckeckUrl(url)){
+            if (!this.token) {
+                return this.getToken()
             }
         }
-        this.sendRequest('POST', url, data, _this.header, callback)
+        return this.request(url, param, method)
     }
-    // get请求
-    sendGet(url, data, callback) {
 
-    }
-    // 发送请求
-    sendRequest(method, apiUrl, data, config = {}, callback) {
-        let _this = this;
-        wx.request({
-            url: this.baseUrl + apiUrl,
-            data: data,
-            method: method,
-            header: {
-                "Content-Type": "application/json",
-                "token": config.token,
-                "version": config.version
-            },
-            success: function(res) {
-                let data = res.data
-                _this.statusCode(data, callback)
-            },
-            fail: function(err) {
-                console.log(err);
+    getToken(){
+        const _this = this
+        return new Promise((resolve, reject) => {
+            _this.loginQueue.push({ resolve, reject});
+            if (!_this.isLoginning) {
+                _this.isLoginning = true;
+                _this.login().then(res =>{
+                    _this.isLoginning = false;
+                    while (_this.loginQueue.length) {
+                        _this.loginQueue.shift().resolve(res);
+                    }
+                }).catch((err) => {
+                    _this.isLoginning = false;
+                    while (_this.loginQueue.length) {
+                        _this.loginQueue.shift().reject(err);
+                    }
+                });
             }
         })
     }
 
-    // 状态码处理
-    statusCode(data, callback) {
-        switch (data.code) {
+    login(){
+        return new Promise((resolve, reject) => {
+            let ext = {
+                js_code: '',
+                key: MD5Util.hexMD5('eshare'),
+                preview: false,
+                weapp_id: wx.$ext.weAppId,
+            }
+            wx.login({
+                success(res) {
+                    if (res.code) {
+                        ext.js_code = res.code
+                        wx.$api.login(ext).then(res =>{
+                            wx.setStorageSync('token', res.data.token)
+                            resolve()
+                        }).catch(reject)
+                    } else {
+                        reject(res);
+                    }
+                },
+                fail: reject,
+            });
+        });
+    }
+
+    /**
+     * 获取sessionId
+     * 参数：undefined
+     * 返回值：[promise]sessionId
+     */
+    request(url, param, method = 'POST') {
+        const _this = this;
+        const options = {
+            url: this.apiUrl + url,
+            data: param,
+            method: method,
+            header: this.header
+        }
+        return new Promise((resolve, reject) => {
+            wx.request(Object.assign({}, options, {
+                success(res) {
+                    const isSuccess = _this.isHttpSuccess(res.statusCode);
+                    if (isSuccess) { // 验证网络错误
+                        if (res.data.code == 0) {
+                            resolve(res.data);
+                        } else {
+                            reject(res.data)
+                        }
+                    } else {
+                        _this.handlerCode(res.statusCode)
+                    }
+                },
+                fail(err) {
+                    reject(err)
+                }
+            }));
+        })
+    }
+
+    /**
+     * 判断请求状态是否成功
+     * 参数：http状态码
+     * 返回值：[Boolen]
+     */
+    isHttpSuccess(status) {
+        return status >= 200 && status < 300 || status === 304;
+    }
+
+    /**
+     * 状态码处理
+     */
+    handlerCode(err, msg) {
+        switch (err.code) {
             case -1:
-                console.log(data.message)
+                wx.showToast({ title: err.message, icon: 'none' });
                 break;
             case 0:
-                callback(data.data)
                 break;
+            default:
+                wx.showToast({ title: '未知错误', icon: 'none' });
         }
     }
 }
