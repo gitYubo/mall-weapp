@@ -3,8 +3,8 @@
 
 <ui-search-box customStyle="" inputStyle="border-radius:40px;"></ui-search-box>
 
-<ui-swiper customStyle="height:375px" swiperType="" isDot="{{false}}" is="{{}}"></ui-swiper>
-<view style='padding:0 24rpx'>
+<!-- <ui-swiper customStyle="height:375px" swiperType="" isDot="{{false}}" is="{{}}"></ui-swiper>
+<view style='padding:0 24rpx'> -->
 
     <!-- <ui-roller autoplay="2000" height="50">
         <ui-roller-item>
@@ -34,11 +34,11 @@
         </ui-roller-item>
     </ui-roller> -->
 
-    <ui-goods-list scrollX="{{false}}"
+    <!-- <ui-goods-list scrollX="{{false}}"
         column-num="{{2}}"
         item-column="column"
         top-style="height: 170px;width:170px" 
         bottom-style="height: 65px;">
-    </ui-goods-list>
+    </ui-goods-list> -->
 
-</view>
+<!-- </view> -->

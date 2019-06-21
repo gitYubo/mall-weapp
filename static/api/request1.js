@@ -1,82 +1,92 @@
+import MD5Util from '../../static/utils/MD5Encode';
 
-
-import BaseComponent from '../prototype/baseComponent';
-import common from '../common/common';
-
-// 不需要tokeng的接口
-const ckeckUrl =  ['weapp/gettoken']
-
-class Request extends BaseComponent {
-    constructor (){
-        super()
+class Http {
+    constructor() {
         this.baseUrl = "https://fcdev.guodong.com/app/";
-        this.alignment = []
-        this.header  = {
-            "Content-Type": "application/json",  
-            "token":"" ,
-            "version":""
-        }
+        this.queue = []; // 请求队列
+        this.isLoginning = false // 登陆锁
     }
-    // post请求
-    sendPost(url, data = {}, callback){
-        // 验证token
-        let userToken = common.getStorage('token')
-        if (ckeckUrl.includes(url) == false){
-            if (!userToken) {
-                common.jumpToLogin()
-                return false
-            }
-        }
 
-        let config = {
-            token: userToken,
-            version: ''
-        }
-        if (typeof callback != 'function'){
-            callback =  ()=>{}
-        }
-        this.sendRequest('POST', url , data, config , callback)
-    }
-    // get请求
-    sendGet(url, data, callback){
-
-    }
-    // 发送请求
-    sendRequest(method, apiUrl, data, config = {}, callback ){
-        let _this = this;
-        wx.request({
-            url: this.baseUrl + apiUrl,
-            data: data,
-            method: method,
-            header: {
-                "Content-Type": "application/json",
-                "token": config.token,
-                "version": config.version
-            },
-            success: function (res) {
-                let data = res.data
-                _this.statusCode(data, callback)
-            },
-            fail: function (err) {
-                console.log(err);
+    // 请求入口
+    request(method, url, data) {
+        let token = wx.getStorageSync('token')
+        return new Promise((resolve, reject) => {
+            if (!token) {
+                this.queue.push({ method, url, data, resolve, reject })
+                if (!this.isLoginning) {
+                    this.isLoginning = true
+                    this.getToken().then((res) => {
+                        this.isLoginning = false;
+                        wx.setStorageSync('token', res.data.token)
+                        while (this.queue.length) {
+                            let aj = this.queue.shift()
+                            this.requestP(aj.method, aj.url, aj.data).then((res1) => {
+                                aj.resolve(res1);
+                            })
+                        }
+                    }).catch((err) => {
+                        this.isLoginning = false;
+                        wx.showToast({
+                            title: err.message,
+                            icon: 'none'
+                        })
+                    })
+                }
+            } else {
+                resolve(this.requestP(method, url, data));
             }
         })
     }
-    
-    // 状态码处理
-    statusCode(data, callback){
-        switch (data.code) {
-            case -1:
-                common.jumpToLogin()
-                console.log(data.message)
-                return false
-            break;
-            case 0:
-                callback(data)
-            break;
+
+    // 发起请求
+    requestP(method, url, data) {
+        let options = {
+            method: method,
+            url: this.baseUrl + url,
+            data: data
+        };
+        options['header'] = {
+            "Content-Type": "application/json",
+            "token": wx.getStorageSync('token'),
+            "version": ""
         }
+        return new Promise((resolve, reject) => {
+            wx.request(Object.assign({}, options, {
+                success: function(res) {
+                    let data = res.data
+                    if (data.code == 0) {
+                        resolve(data)
+                    } else {
+                        reject(data)
+                    }
+                },
+                fail: function(err) {
+                    reject(err)
+                }
+            }))
+        })
+    }
+
+    // 登陆获取token
+    getToken() {
+        let ext = {
+            js_code: '',
+            key: MD5Util.hexMD5('eshare'),
+            preview: false,
+            weapp_id: wx.$ext.weAppId,
+        }
+        let _this = this
+        return new Promise((resolve, reject) => {
+            wx.login({
+                success(res) {
+                    if (res.code) {
+                        ext.js_code = res.code
+                        resolve(_this.requestP('POST', 'weapp/gettoken', ext))
+                    }
+                }
+            })
+        })
     }
 }
 
-
-export default new Request();
+export default new Http();

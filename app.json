@@ -27,5 +27,6 @@
         "ui-roller": "/components/ui-roller/index",
         "ui-roller-item": "/components/ui-roller-item/index",
         "ui-goods-list": "/components/ui-goods-list/index"
-    }
+    },
+    "sitemapLocation": "sitemap.json"
 }
